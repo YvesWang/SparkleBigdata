@@ -1,0 +1,8 @@
+hjs \
+-D mapreduce.job.maps=1000000 \
+-files /home/ys3225/1004project \
+-mapper 1004project/map.py \
+-combiner 1004project/combiner.py \
+-reducer 1004project/reduce.py \
+-input /user/bigdata/nyc_open_data/* \
+-output /user/ys3225/1004project/result0.out
