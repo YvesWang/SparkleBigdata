@@ -14,7 +14,7 @@ for line in sys.stdin:
     line = line.strip()
     key, value = line.split('\t')
     #filename, count = value.split(',')
-    truekey, filekey = key.split(',')
+    truekey, filekey = key.split(';;')
     value = int(value)
 
     if lasttruekey == 'start':
@@ -25,17 +25,17 @@ for line in sys.stdin:
         if filekey == lastfilekey:
             filecount += value
         else:
-            file_count_list.append('{0:s}:{1:d}'.format(lastfilekey,filecount))
+            file_count_list.append('{0:s}::{1:d}'.format(lastfilekey,filecount))
             lastfilekey = filekey
             filecount = value
 
     else:
-        file_count_list.append('{0:s}:{1:d}'.format(lastfilekey,filecount))
-        print('{0:s}\t{1:s}'.format(lasttruekey,";".join(file_count_list)))
+        file_count_list.append('{0:s}::{1:d}'.format(lastfilekey,filecount))
+        print('{0:s}\t{1:s}'.format(lasttruekey,";;".join(file_count_list)))
         lasttruekey = truekey
         file_count_list = []
         filecount = value
         lastfilekey = filekey
         
-file_count_list.append('{0:s}:{1:d}'.format(lastfilekey,filecount))
-print('{0:s}\t{1:s}'.format(lasttruekey,";".join(file_count_list)))
+file_count_list.append('{0:s}::{1:d}'.format(lastfilekey,filecount))
+print('{0:s}\t{1:s}'.format(lasttruekey,";;".join(file_count_list)))

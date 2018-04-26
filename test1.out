@@ -1,0 +1,775 @@
+            "item" : "7.90"*	
+            "item" : "8.80"*	
+            "item" : "8.80"*	
+            "item" : "9.70"*	
+        "position" : 8*	
+      "newBackend" : false*	
+            "item" : "13.90"*	
+            "item" : "8.70"*	
+            "item" : "9.60"*	
+          "average" : "14.27857142857143"*	
+        "fieldName" : "_2005_percent_of_docket"*	
+        "position" : 7*	
+        "rdfClass" : ""*	
+        "tableColumnId" : 1518149*	
+            "item" : "6.80"*	
+        "fieldName" : "_2005_number_of_cases"*	
+        "fieldName" : "_2006_percent_of_docket"*	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "flags" : [ "hidden" ]	
+        "position" : 6*	
+        "tableColumnId" : 1518148*	
+        "width" : 364*	
+        "width" : 364*	
+        "width" : 364*	
+        "width" : 364*	
+        "width" : 364*	
+      "createdAt" : 1315852801*	
+      "rights" : [ "read" ]*	
+          "filename" : "CCRB__Age_of_Substantiated_Cases_Measured_from_the_Date_of_Report_2005_-_2009_DD.xlsx"*	
+          "name" : "CCRB__Age_of_Substantiated_Cases_Measured_from_the_Date_of_Report_2005_-_2009_DD.xlsx"	
+          "sum" : "322"	
+          "sum" : "432"	
+          "sum" : "520"	
+        "attachments" : [ {	
+        "availableDisplayTypes" : [ "table"* "fatrow"* "page" ]*	
+        "dataTypeName" : "text"*	
+        "fieldName" : ":id"*	
+        "fieldName" : "_2006_number_of_cases"*	
+        "fieldName" : "_2007_percent_of_docket"*	
+        "flags" : [ "public" ]	
+        "name" : "position"*	
+        "name" : "updated_meta"*	
+        "position" : 5*	
+        "profileImageUrlMedium" : "/api/users/5fuc-pqz2/profile_images/THUMB"*	
+        "tableColumnId" : 1518158*	
+        "width" : 352*	
+      "publicationDate" : 1315852801*	
+  "data" : [ [ 1* "9464DA20-42A4-44A8-9347-555ECF93BE9C"* 1* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "3 or younger"* "11"* "4.20"* "16"* "6.10"* "2"* "0.90"* "0"* "0.00"* "0"* "0.00" ]	
+            "item" : "6.60"*	
+          "smallest" : "0.00"*	
+          "smallest" : "0.00"*	
+        "fieldName" : ":created_meta"*	
+        "fieldName" : "_2007_number_of_cases"*	
+        "fieldName" : "_2008_percent_of_docket"*	
+        "inherited" : false*	
+        "name" : "created_at"*	
+        "name" : "sid"*	
+        "position" : 4*	
+        "renderTypeConfig" : {	
+        "tableColumnId" : 1518157*	
+        "width" : 340*	
+        "width" : 340*	
+        "width" : 340*	
+        "width" : 340*	
+        "width" : 340*	
+      "viewLastModified" : 1510873174*	
+            "count" : 7	
+            "count" : 7	
+            "count" : 7	
+            "item" : "5.60"*	
+            "item" : "5.60"*	
+            "item" : "5.60"*	
+            "item" : "6.50"*	
+            "item" : "7.40"*	
+            "item" : "8.30"*	
+            "item" : "9.20"*	
+        "fieldName" : "_2008_number_of_cases"*	
+        "fieldName" : "_2009_percent_of_docket"*	
+        "position" : 3*	
+        "tableColumnId" : 1518156*	
+      "owner" : {	
+* [ 5* "6B0677B0-1063-4B98-A485-E466F2A23EA5"* 5* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "7 months"* "23"* "8.80"* "23"* "8.70"* "16"* "7.40"* "16"* "9.90"* "10"* "5.10" ]	
+            "count" : 8	
+            "count" : 8	
+            "count" : 8	
+            "item" : "1.90"*	
+            "item" : "10.70"*	
+            "item" : "11.60"*	
+            "item" : "4.60"*	
+            "item" : "4.60"*	
+            "item" : "4.60"*	
+            "item" : "6.40"*	
+            "item" : "7.30"*	
+            "item" : "9.10"*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "null" : 0*	
+          "smallest" : "11"*	
+          "smallest" : "11"*	
+          "visible" : {	
+        "fieldName" : "_2009_number_of_cases"*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "id" : -1*	
+        "position" : 2*	
+        "tableColumnId" : 1518155*	
+            "count" : 9	
+            "count" : 9	
+            "count" : 9	
+            "count" : 9	
+            "count" : 9	
+            "item" : "0.90"*	
+            "item" : "3 or younger"*	
+            "item" : "7.20"*	
+            "item" : "8.10"*	
+            "item" : "8.10"*	
+          "average" : "28.14285714285714"*	
+        "tableColumnId" : 1518154*	
+        "type" : "interactive"*	
+        "type" : "interactive"*	
+      "metadata" : {	
+      "publicationAppendEnabled" : false*	
+      "rowClass" : ""*	
+      "rowsUpdatedAt" : 1315852802*	
+      "rowsUpdatedBy" : "k2fz-tf56"*	
+      "viewType" : "tabular"*	
+            "item" : "12.30"*	
+            "item" : "6.20"*	
+            "item" : "8.00"*	
+          "largest" : "100.00"*	
+          "largest" : "100.00"*	
+          "largest" : "100.00"*	
+          "largest" : "100.00"*	
+          "largest" : "100.00"*	
+          "sum" : "394"	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "position" : 0*	
+        "tableColumnId" : 1518153*	
+      "flags" : [ "default"* "restorable"* "restorePossibleForType" ]	
+* [ 8* "2B17B8FC-2054-4F23-86CB-B725E05B63A4"* 8* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "10 months"* "24"* "9.20"* "19"* "7.20"* "17"* "7.90"* "7"* "4.30"* "20"* "10.20" ]	
+            "Agency" : "Civilian Complaint Review Board (CCRB)"	
+            "item" : "2.50"*	
+            "item" : "20.50"*	
+            "item" : "4.30"*	
+            "item" : "6.10"*	
+          "average" : "37.14285714285714"*	
+          "largest" : "Total Docket"*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          "non_null" : 14*	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+          }* {	
+        "profileImageUrlSmall" : "/api/users/5fuc-pqz2/profile_images/TINY"*	
+        "tableColumnId" : 1518152*	
+      "attribution" : "Civilian Complaint Review Board (CCRB)"*	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+      }* {	
+            "item" : "11.20"*	
+            "item" : "11.20"*	
+            "item" : "161"*	
+            "item" : "260"*	
+            "item" : "4.20"*	
+            "item" : "4.20"*	
+            "item" : "4.20"*	
+            "item" : "5.10"*	
+            "item" : "6.00"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "renderTypeName" : "meta_data"*	
+        "screenName" : "NYC OpenData"*	
+        "tableColumnId" : 1518151*	
+      "hideFromDataJson" : false*	
+* [ 7* "9D5463B4-4454-4817-9AA5-B86EB9ED77D2"* 7* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "9 months"* "17"* "6.50"* "22"* "8.30"* "17"* "7.90"* "16"* "9.90"* "9"* "4.60" ]	
+            "item" : "0.50"*	
+            "item" : "10.20"*	
+            "item" : "10.20"*	
+          "average" : "23"*	
+        "flags" : [ "siteMember" ]	
+        "id" : "k2fz-tf56"*	
+        "renderTypeName" : "percent"*	
+        "renderTypeName" : "percent"*	
+        "renderTypeName" : "percent"*	
+        "renderTypeName" : "percent"*	
+        "renderTypeName" : "percent"*	
+        "rowLabel" : ""*	
+        "tableColumnId" : 1518150*	
+      "description" : "A statistical breakdown of the age of Civilian Complaint Review Board (CCRB) substantiated cases* by year* measured from the date of the reports in the years 2205 through 2009.The age of the docket is measured by the number of open cases at the end of each reporting period."*	
+      "publicationStage" : "published"*	
+      "tags" : [ "complaint"* "civilian"* "review"* "board"* "activity"* "crime"* "year"* "age"* "demographics 2005"* "2006"* "2007"* "2008"* "2009"* "docket"* "incident"* "report"* "substantiation"* "substantiated" ]*	
+            "item" : "33.00"*	
+            "item" : "9 months"*	
+          "average" : "14.27142857142857"*	
+          "smallest" : "10 months"	
+* [ 13* "2A609649-A344-4D49-9BE9-24F18023048E"* 13* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "15 or older"* "32"* "12.30"* "23"* "8.70"* "25"* "11.60"* "33"* "20.50"* "65"* "33.00" ]	
+            "item" : "10.00"*	
+            "item" : "197"*	
+            "item" : "8 months"*	
+          "Update" : {	
+        "fieldName" : ":meta"*	
+        "id" : "5fuc-pqz2"*	
+        "name" : "2005 Percent of Docket"*	
+      "indexUpdatedAt" : 1510874361*	
+* [ 14* "77F0B7B0-2B43-4E77-A979-CD9B0AD5E315"* 14* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "Total Docket"* "260"* "100.00"* "264"* "100.00"* "216"* "100.00"* "161"* "100.00"* "197"* "100.00" ]	
+            "item" : "0"*	
+            "item" : "0"*	
+            "item" : "14 months"*	
+            "item" : "264"*	
+            "item" : "7 months"*	
+          "average" : "14.28571428571429"*	
+          "average" : "14.29285714285714"*	
+          "average" : "14.29285714285714"*	
+          }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "format" : { }*	
+        "name" : "2005 Number of Cases"*	
+        "name" : "2006 Percent of Docket"*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+        }*	
+      "publicationGroup" : 240288*	
+      }*	
+      }*	
+      }*	
+  }*	
+            "Automation" : "No"*	
+            "item" : "1"*	
+            "item" : "1.00"*	
+            "item" : "100.00"*	
+            "item" : "100.00"*	
+            "item" : "100.00"*	
+            "item" : "100.00"*	
+            "item" : "100.00"*	
+            "item" : "13 months"*	
+            "item" : "30"*	
+            "item" : "6 months"*	
+          "view" : "percent_bar_and_text"	
+          "view" : "percent_bar_and_text"	
+          "view" : "percent_bar_and_text"	
+          "view" : "percent_bar_and_text"	
+          "view" : "percent_bar_and_text"	
+        "flags" : [ "communityMember" ]	
+        "name" : "2006 Number of Cases"*	
+        "name" : "2007 Percent of Docket"*	
+      "provenance" : "official"*	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "count" : 20	
+            "item" : "0.00"*	
+            "item" : "0.00"*	
+            "item" : "12 months"*	
+            "item" : "2"*	
+            "item" : "2"*	
+            "item" : "20"*	
+            "item" : "5 months"*	
+            "item" : "Total Docket"*	
+        "name" : "2007 Number of Cases"*	
+        "name" : "2008 Percent of Docket"*	
+        "screenName" : "Gary A"*	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "count" : 10	
+            "item" : "10"*	
+            "item" : "10"*	
+            "item" : "10"*	
+            "item" : "11 months"*	
+            "item" : "15 or older"*	
+            "item" : "21"*	
+            "item" : "21"*	
+            "item" : "21"*	
+            "item" : "21"*	
+            "item" : "3"*	
+            "item" : "32"*	
+            "item" : "4 months"*	
+            "item" : "65"*	
+          "largest" : "161"*	
+          "largest" : "260"*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+          } ]*	
+        "custom_fields" : {	
+        "fieldName" : ":position"*	
+        "fieldName" : ":updated_meta"*	
+        "name" : "2008 Number of Cases"*	
+        "name" : "2009 Percent of Docket"*	
+        "name" : "updated_at"*	
+        } ]*	
+      } ]*	
+      } ]*	
+    "view" : {	
+  "meta" : {	
+* [ 3* "5EB8F278-4480-40B1-B194-B6C0B1091D96"* 3* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "5 months"* "21"* "8.10"* "27"* "10.20"* "30"* "13.90"* "7"* "4.30"* "2"* "1.00" ]	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "count" : 11	
+            "item" : "10 months"*	
+            "item" : "11"*	
+            "item" : "11"*	
+            "item" : "11"*	
+            "item" : "11"*	
+            "item" : "22"*	
+            "item" : "22"*	
+            "item" : "33"*	
+          "sum" : "200.00"	
+        "fieldName" : ":created_at"*	
+        "id" : 2834609*	
+        "name" : "2009 Number of Cases"*	
+      "category" : "Public Safety"*	
+* [ 2* "9BE10C09-FF28-4B4E-80D2-E046E8B40864"* 2* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "4 months"* "12"* "4.60"* "21"* "8.00"* "10"* "4.60"* "3"* "1.90"* "1"* "0.50" ]	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "count" : 12	
+            "item" : "12"*	
+            "item" : "12"*	
+            "item" : "23"*	
+            "item" : "23"*	
+            "item" : "5"*	
+          "sum" : "200.10"	
+          "sum" : "200.10"	
+        "id" : 2834608*	
+        "rdfSubject" : "0"*	
+        "renderTypeName" : "number"*	
+        "renderTypeName" : "number"*	
+        "renderTypeName" : "number"*	
+        "renderTypeName" : "number"*	
+        "renderTypeName" : "number"*	
+      "displayType" : "table"*	
+      "numberOfComments" : 0*	
+      "oid" : 332826*	
+* [ 9* "AB849C48-EF0A-41AE-B420-0F9F962B9A4F"* 9* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "11 months"* "12"* "4.60"* "22"* "8.30"* "9"* "4.20"* "18"* "11.20"* "21"* "10.70" ]	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "count" : 13	
+            "item" : "13"*	
+            "item" : "13"*	
+            "item" : "13"*	
+            "item" : "24"*	
+          "Dataset Information" : {	
+          "average" : "37.71428571428571"*	
+          "largest" : "197"*	
+        "fieldName" : "age_of_case_in_months"*	
+        "id" : 2834607*	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "count" : 14	
+            "item" : "216"*	
+            "item" : "25"*	
+            "item" : "25"*	
+            "item" : "7"*	
+          "largest" : "264"*	
+        "id" : 2834606*	
+        "name" : "id"*	
+* [ 12* "624F1C5A-D4F5-4BE7-8C95-680943510A15"* 12* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "14 months"* "25"* "9.60"* "17"* "6.40"* "12"* "5.60"* "13"* "8.10"* "13"* "6.60" ]	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "count" : 15	
+            "item" : "26"*	
+        "displayName" : "NYC OpenData"*	
+        "fieldName" : ":sid"*	
+        "id" : 2834605*	
+        "name" : "created_meta"*	
+        "profileImageUrlLarge" : "/api/users/5fuc-pqz2/profile_images/LARGE"*	
+      "columns" : [ {	
+* [ 10* "88261FC0-6CFC-48B9-9A31-53DBEDEDBCE8"* 10* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "12 months"* "26"* "10.00"* "19"* "7.20"* "19"* "8.80"* "18"* "11.20"* "18"* "9.10" ]	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "count" : 16	
+            "item" : "16"*	
+            "item" : "16"*	
+            "item" : "16"*	
+            "item" : "27"*	
+            "item" : "9"*	
+            "item" : "9"*	
+            "item" : "9"*	
+        "id" : 2834604*	
+        "renderTypeName" : "text"*	
+      "averageRating" : 0*	
+      "hideFromCatalog" : false*	
+* [ 6* "FFFAF113-B246-4964-AF39-D3F6085690D3"* 6* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "8 months"* "21"* "8.10"* "23"* "8.70"* "25"* "11.60"* "10"* "6.20"* "11"* "5.60" ]	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "count" : 17	
+            "item" : "17"*	
+            "item" : "17"*	
+            "item" : "17"*	
+        "id" : 2834603*	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "count" : 18	
+            "item" : "18"*	
+            "item" : "18"*	
+          "sum" : "199.80"	
+        "id" : 2834602*	
+            "Update Frequency" : "Historical Data"	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "count" : 19	
+            "item" : "19"*	
+            "item" : "19"*	
+            "item" : "19"*	
+          "smallest" : "0"*	
+          "smallest" : "0"*	
+          "sum" : "199.90"	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "cachedContents" : {	
+        "id" : 2834601*	
+      "grants" : [ {	
+      "tableId" : 240288*	
+{	
+          "smallest" : "0.90"*	
+          "sum" : "528"	
+        "id" : 2834600*	
+        "position" : 12*	
+          "largest" : "216"*	
+          "smallest" : "2"*	
+          }	
+          }	
+        "displayName" : "Gary A"*	
+        "format" : { }	
+        "format" : { }	
+        "format" : { }	
+        "format" : { }	
+        "format" : { }	
+        "format" : { }	
+        "id" : 2834610*	
+        "name" : "Age of Case in Months"*	
+        "position" : 11*	
+        "rowIdentifier" : "0"*	
+        }	
+        }	
+        }	
+        }	
+        }	
+        }	
+    }	
+}	
+          "assetId" : "29a6ad57-2027-4c05-89fd-5798eac5eb35"*	
+        "position" : 10*	
+        "type" : "viewer"*	
+      "downloadCount" : 1653*	
+      "name" : "CCRB: Age of Substantiated Cases Measured from the Date of Report 2005 - 2009"*	
+      "query" : { }*	
+* [ 11* "D6A4D14E-DF19-468B-8786-D2780D92FCA0"* 11* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "13 months"* "17"* "6.50"* "11"* "4.20"* "13"* "6.00"* "11"* "6.80"* "22"* "11.20" ]	
+* [ 4* "3F81562C-CF13-46AB-91CB-444DA38C1E74"* 4* 1315827602* "392753"* 1315827602* "392753"* "{\n}"* "6 months"* "19"* "7.30"* "21"* "8.00"* "21"* "9.70"* "9"* "5.60"* "5"* "2.50" ]	
+            "item" : "9.90"*	
+          "smallest" : "4.20"*	
+          "smallest" : "4.20"*	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+          "top" : [ {	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+        "dataTypeName" : "meta_data"*	
+      "id" : "22zm-qrtq"*	
+      "viewCount" : 218*	
+ ]	
+            "table" : true	
+          "average" : "30.85714285714286"*	
+        "dataTypeName" : "number"*	
+        "dataTypeName" : "number"*	
+        "dataTypeName" : "number"*	
+        "dataTypeName" : "number"*	
+        "dataTypeName" : "number"*	
+        "dataTypeName" : "percent"*	
+        "dataTypeName" : "percent"*	
+        "dataTypeName" : "percent"*	
+        "dataTypeName" : "percent"*	
+        "dataTypeName" : "percent"*	
+        "fieldName" : ":updated_at"*	
+        "format" : {	
+        "format" : {	
+        "format" : {	
+        "format" : {	
+        "format" : {	
+        "name" : "meta"*	
+        "position" : 9*	
+      "tableAuthor" : {	
+      "totalTimesRated" : 0*	
