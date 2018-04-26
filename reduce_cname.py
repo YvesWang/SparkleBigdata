@@ -19,8 +19,8 @@ for line in sys.stdin:
         file_count_list.append('{0:s}'.format(value))
 
     else:
-        print('{0:s}\t{1:s}'.format(lastkey,";".join(file_count_list)))
+        print('{0:s}\t{1:s}'.format(lastkey,";;".join(file_count_list)))
         lastkey = key
         file_count_list = ['{0:s}'.format(value)]
         
-print('{0:s}\t{1:s}'.format(lastkey,";".join(file_count_list)))
+print('{0:s}\t{1:s}'.format(lastkey,";;".join(file_count_list)))

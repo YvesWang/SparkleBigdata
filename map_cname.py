@@ -6,8 +6,8 @@ import sys
 import csv
 stopword = [":",",",""," ","[","]","\n","{","}"]
 
-#filename = os.environ.get("mapreduce_map_input_file")
-filename = sys.argv[1]
+filename = os.environ.get("mapreduce_map_input_file")
+#filename = "aaa"
 for line in sys.stdin:
     if line.startswith('        "name"'):
         j=line.split(":")[-1].strip(''.join(stopword))
