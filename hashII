@@ -1,0 +1,26 @@
+from csv import reader
+import sys
+from pyspark import SparkContext, SparkConf
+from pyspark.sql import Row
+import re
+from pyspark.sql.functions import monotonically_increasing_id,format_string
+
+conf = SparkConf().setMaster("local").setAppName("Test")
+
+text = sc.textFile("/user/tw1682/Bigdata/Project/Inverted_Indexing/",200)
+textrdd = text.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+IIdf = spark.createDataFrame(textrdd)
+
+Idf = IIdf.withColumn("id", monotonically_increasing_id())
+
+
+text = sc.textFile("/user/tw1682/Bigdata/Project/Inverted_Indexing/",200)
+textdigit = text.filter(lambda x: re.match(r'^\d+\t.*$',x))
+digitrdd = textdigit.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+IIdigit = spark.createDataFrame(digitrdd)
+IIdigit.select(format_string('%s\t%s',IIdigit.Key,IIdigit.Filename_Count)).write.save("IIdigit.out",format="text")
+
+alphabet = text.filter(lambda x: re.match(r'^[a-zA-Z]+\t.*$',x))
+alphabetrdd = alphabet.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+IIalphabet = spark.createDataFrame(alphabetrdd)
+IIalphabet.select(format_string('%s\t%s',IIalphabet.Key,IIalphabet.Filename_Count)).write.save("IIalphabet.out",format="text")
