@@ -1,26 +1,59 @@
+#!/usr/bin/env python
+
 from csv import reader
 import sys
 from pyspark import SparkContext, SparkConf
 from pyspark.sql import Row
 import re
-from pyspark.sql.functions import monotonically_increasing_id,format_string
+from pyspark.sql.functions import monotonically_increasing_id,format_string,collect_list
 
 conf = SparkConf().setMaster("local").setAppName("Test")
 
 text = sc.textFile("/user/tw1682/Bigdata/Project/Inverted_Indexing/",200)
-textrdd = text.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
-IIdf = spark.createDataFrame(textrdd)
+textrdd1 = text.map(lambda x:(x.split('\t')[0],x.split('\t')[1].split(';;;;'))).flatMapValues(lambda x: x)
+textrdd2 = textrdd1.map(lambda x:(x[0]+';;;;'+x[1].split('::')[0],x[1].split('::')[1]))
+textrdd3 = textrdd2.reduceByKey(lambda x,y : int(x)+int(y))
+textrdd4 = textrdd3.map(lambda x : (x[0].split(';;;;')[0],x[0].split(';;;;')[1]+'::::'+ str(x[1])))
+textrdd5 = textrdd4.reduceByKey(lambda x,y: x+';;;;'+y)
 
-Idf = IIdf.withColumn("id", monotonically_increasing_id())
+textrdd = text.map(lambda x:(x.split('\t')[0],x.split('\t')[1].split(';;;;'))).flatMapValues(lambda x: x).map(lambda x:(x[0]+';;;;'+x[1].split('::')[0],x[1].split('::')[1])).reduceByKey(lambda x,y : int(x)+int(y)).map(lambda x : (x[0].split(';;;;')[0],x[0].split(';;;;')[1]+'::::'+ str(x[1]))).reduceByKey(lambda x,y: x+';;;;'+y)
+
+#hash table
+textdigit = textrdd.filter(lambda x: re.match(r'^\d+$',x[0])).map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
+textdigit.saveAsTextFile("Bigdata/Project/HashIndex/IIdigit.out")
+
+alphabet = textrdd.filter(lambda x: re.match(r'^[a-zA-Z]+$',x[0])).persist()
+
+from string import ascii_lowercase
+
+for i in ascii_lowercase:
+    alphabet_i = alphabet.filter(lambda x: re.match(r'^'+i+'+',x[0])).map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
+        alphabet_i.saveAsTextFile("Bigdata/Project/HashIndex/alphabet_"+i)
 
 
-text = sc.textFile("/user/tw1682/Bigdata/Project/Inverted_Indexing/",200)
-textdigit = text.filter(lambda x: re.match(r'^\d+\t.*$',x))
-digitrdd = textdigit.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
-IIdigit = spark.createDataFrame(digitrdd)
-IIdigit.select(format_string('%s\t%s',IIdigit.Key,IIdigit.Filename_Count)).write.save("IIdigit.out",format="text")
 
-alphabet = text.filter(lambda x: re.match(r'^[a-zA-Z]+\t.*$',x))
-alphabetrdd = alphabet.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
-IIalphabet = spark.createDataFrame(alphabetrdd)
-IIalphabet.select(format_string('%s\t%s',IIalphabet.Key,IIalphabet.Filename_Count)).write.save("IIalphabet.out",format="text")
+        textrdd = text.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+        test = textrdd1.reduceByKey(lambda x,y:x+'------'+y)
+        IIdf = spark.createDataFrame(test)
+
+        test = IIdf.groupBy('Key').agg(cotestllect_list("Filename_Count"))
+
+        Idf = test.withColumn("File:Count", ";;;;".join(test['collect_list(Filename_Count)']))
+
+
+        Idf = IIdf.withColumn("id", monotonically_increasing_id())
+
+
+        text = sc.textFile("/user/tw1682/Bigdata/Project/Inverted_Indexing/",200)
+        textdigit = text.filter(lambda x: re.match(r'^\d+\t.*$',x))
+        digitrdd = textdigit.map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+        IIdigit = spark.createDataFrame(digitrdd)
+        IIdigit.select(format_string('%s\t%s',IIdigit.Key,IIdigit.Filename_Count)).write.save("Bigdata/Project/HashIndex/IIdigit.out",format="text")
+
+        alphabet = text.filter(lambda x: re.match(r'^[a-zA-Z]+\t.*$',x)).cache()
+
+        indexing_a = alphabet.filter(lambda x: re.match(r'^a',x)).map(lambda x: Row(Key=x.split('\t')[0],Filename_Count=x.split('\t')[1]))
+        IIalphabet = spark.createDataFrame(indexing_a)
+        IIalphabet.select(format_string('%s\t%s',IIalphabet.Key,IIalphabet.Filename_Count)).write.save("Bigdata/Project/HashIndex/IIalphabet_a.out",format="text")
+
+        Idf = test.withColumn("File:Count", ";;;;".join(test[Filename_Count]))
