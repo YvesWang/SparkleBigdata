@@ -39,7 +39,8 @@ for line in sys.stdin:
             filecount = value
             lastfilekey = filekey
     except:
-        print('ERRORERRORERRORERROR',line)
+        #print('ERRORERRORERRORERROR',line)
+        None
 
-#file_count_list.append('{0:s}::{1:d}'.format(lastfilekey,filecount))
-#print('{0:s}\t{1:s}'.format(lasttruekey,";;;;".join(file_count_list)))
+file_count_list.append('{0:s}::{1:d}'.format(lastfilekey,filecount))
+print('{0:s}\t{1:s}'.format(lasttruekey,";;;;".join(file_count_list)))
