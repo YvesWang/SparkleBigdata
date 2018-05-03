@@ -22,7 +22,7 @@ textrdd = text.map(lambda x:(x.split('\t')[0],x.split('\t')[1].split(';;;;'))).f
 textdigit = textrdd.filter(lambda x: re.match(r'^\d+$',x[0])).map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
 textdigit.saveAsTextFile("Bigdata/Project/HashIndex/IIdigit.out")
 
-alphabet = textrdd.filter(lambda x: re.match(r'^[a-zA-Z]+$',x[0])).persist()
+alphabet = textrdd.filter(lambda x: re.match(r'^[a-zA-Z ]+$',x[0])).persist()
 
 from string import ascii_lowercase
 
