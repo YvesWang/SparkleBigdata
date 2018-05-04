@@ -26,6 +26,7 @@ def search_contain(query):
 
 
 def search(querys):
+    flag = True
     for query in querys:
         query = query.lower()
         if re.match(r'^\*.+\*$',query):
@@ -33,8 +34,8 @@ def search(querys):
             #textframe = textframe.filter(textframe['Key'].like('%'+query+'%'))
             if re.match(r'^\d+$',query):
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIdigit.out",200)
-            elif re.match(r'^[a-zA-Z]+$',query):
-                IndexDic = sc.textFile("Bigdata/Project/HashIndex/alphabet_"+query[0],200)
+            elif re.match(r'^[a-zA-Z ]+$',query):
+                IndexDic = sc.textFile("Bigdata/Project/HashIndex/alphabet",200)
             else:
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIALL",200)
             in388 = IndexDic.filter(lambda x: re.match(r'^.*'+query+'.*\t.*$',x))
@@ -43,7 +44,7 @@ def search(querys):
             #textframe=textframe.filter(textframe['Key'].startswith(query))
             if re.match(r'^\d+$',query):
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIdigit.out",200)
-            elif re.match(r'^[a-zA-Z]+$',query):
+            elif re.match(r'^[a-zA-Z ]+$',query):
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/alphabet_"+query[0],200)
             else:
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIALL",200)
@@ -51,13 +52,16 @@ def search(querys):
         else: #call_accuracy
             if re.match(r'^\d+$',query):
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIdigit.out",200)
-            elif re.match(r'^[a-zA-Z]+$',query):
+            elif re.match(r'^[a-zA-Z ]+$',query):
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/alphabet_"+query[0],200)
             else:
                 IndexDic = sc.textFile("Bigdata/Project/HashIndex/IIALL",200)
-            in388 = IndexDic.filter(lambda x: re.match(r'^'+query+'\t.*$',x))   
-    
-    Blurkey = in388.map(lambda x: x.split('\t')[0])
-    insplit = in388.map(lambda x: (x.split('\t')[0],x.split('\t')[1])).flatMapValues(lambda x:x.split(';;;;')).map(lambda x: (x[0],x[1].split('::::')[0],x[1].split('::::')[1])).sortBy(lambda x: -int(x[2]))
-    
+            in388 = IndexDic.filter(lambda x: re.match(r'^'+query+'\t.*$',x))    
+        if flag:
+            result = in388.intersection(in388)
+            flag = False
+            continue
+        result = result.intersection(in388)
+    Blurkey = result.map(lambda x: x.split('\t')[0])
+    insplit = result.map(lambda x: (x.split('\t')[0],x.split('\t')[1])).flatMapValues(lambda x:x.split(';;;;')).map(lambda x: (x[0],x[1].split('::::')[0],x[1].split('::::')[1])).sortBy(lambda x: -int(x[2]))
     return insplit.take(10)

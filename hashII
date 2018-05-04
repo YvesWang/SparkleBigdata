@@ -18,11 +18,22 @@ textrdd5 = textrdd4.reduceByKey(lambda x,y: x+';;;;'+y)
 
 textrdd = text.map(lambda x:(x.split('\t')[0],x.split('\t')[1].split(';;;;'))).flatMapValues(lambda x: x).map(lambda x:(x[0]+';;;;'+x[1].split('::')[0],x[1].split('::')[1])).reduceByKey(lambda x,y : int(x)+int(y)).map(lambda x : (x[0].split(';;;;')[0],x[0].split(';;;;')[1]+'::::'+ str(x[1]))).reduceByKey(lambda x,y: x+';;;;'+y)
 
+textAll = textrdd.map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
+textAll.saveAsTextFile("Bigdata/Project/HashIndex/IIALL")
 #hash table
 textdigit = textrdd.filter(lambda x: re.match(r'^\d+$',x[0])).map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
 textdigit.saveAsTextFile("Bigdata/Project/HashIndex/IIdigit.out")
 
+
+SimII = textrdd.filter(lambda x: re.match(r'(?!^[0-9]*$)(^[0-9a-zA-Z ]+$)',x[0])).map(lambda x: '{0:s}'.format(x[0])).zipWithIndex()
+SimII.saveAsTextFile("Bigdata/Project/HashIndex/SimII")
+
+
 alphabet = textrdd.filter(lambda x: re.match(r'^[a-zA-Z ]+$',x[0])).persist()
+
+
+alphabet = textrdd.filter(lambda x: re.match(r'^[a-zA-Z ]+$',x[0])).map(lambda x: '{0:s}\t{1:s}'.format(x[0],x[1]))
+alphabet.saveAsTextFile("Bigdata/Project/HashIndex/alphabet")
 
 from string import ascii_lowercase
 
