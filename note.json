@@ -1,0 +1,1278 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\ndef search_multi(querys):\n    flag \u003d True\n    for query in querys:\n        query \u003d query.lower()\n        if re.match(r\u0027^\\*.+\\*$\u0027,query):\n            query \u003d query[1:-1]\n            #textframe \u003d textframe.filter(textframe[\u0027Key\u0027].like(\u0027%\u0027+query+\u0027%\u0027))\n            if re.match(r\u0027^\\d+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n            elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet\",200)\n            else:\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n            in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*$\u0027,x))\n        elif re.match(r\".+\\*$\",query):\n            query \u003d query[:-1]\n            #textframe\u003dtextframe.filter(textframe[\u0027Key\u0027].startswith(query))\n            if re.match(r\u0027^\\d+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n            elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n            else:\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n            in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027.*\\t.*$\u0027,x))\n        else: #call_accuracy\n            if re.match(r\u0027^\\d+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n            elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n            else:\n                IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n            in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027\\t.*$\u0027,x))\n        if flag:\n            result \u003d in388.intersection(in388)\n            flag \u003d False\n            continue\n        result \u003d result.intersection(in388)\n    Blurkey \u003d result.map(lambda x: x.split(\u0027\\t\u0027)[0])\n    insplit \u003d result.map(lambda x: (x.split(\u0027\\t\u0027)[0],x.split(\u0027\\t\u0027)[1])).flatMapValues(lambda x:x.split(\u0027;;;;\u0027)).map(lambda x: (x[0],x[1].split(\u0027::::\u0027)[0],x[1].split(\u0027::::\u0027)[1])).sortBy(lambda x: -int(x[2]))\n    return insplit\n",
+      "user": "anonymous",
+      "dateUpdated": "May 12, 2018 4:16:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python",
+        "tableHide": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525657725975_-283352227",
+      "id": "20180506-214845_482393267",
+      "dateCreated": "May 6, 2018 9:48:45 PM",
+      "dateStarted": "May 12, 2018 4:16:15 PM",
+      "dateFinished": "May 12, 2018 4:16:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_withkeyword(query):\n    query \u003d query.lower()\n    if re.match(r\u0027^\\*.+\\*$\u0027,query):\n        query \u003d query[1:-1]\n        #textframe \u003d textframe.filter(textframe[\u0027Key\u0027].like(\u0027%\u0027+query+\u0027%\u0027))\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet\",200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*$\u0027,x))\n    elif re.match(r\".+\\*$\",query):\n        query \u003d query[:-1]\n        #textframe\u003dtextframe.filter(textframe[\u0027Key\u0027].startswith(query))\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027.*\\t.*$\u0027,x))\n    else: #call_accuracy\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027\\t.*$\u0027,x))\n    Blurkey \u003d in388.map(lambda x: x.split(\u0027\\t\u0027)[0])\n    insplit \u003d in388.map(lambda x: (x.split(\u0027\\t\u0027)[0],x.split(\u0027\\t\u0027)[1])).flatMapValues(lambda x:x.split(\u0027;;;;\u0027)).map(lambda x: (x[0],x[1].split(\u0027::::\u0027)[0],x[1].split(\u0027::::\u0027)[1])).sortBy(lambda x: -int(x[2]))\n    return insplit",
+      "user": "anonymous",
+      "dateUpdated": "May 12, 2018 4:09:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "pyspark is not responding"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525703050521_1052210408",
+      "id": "20180507-102410_1934311507",
+      "dateCreated": "May 7, 2018 10:24:10 AM",
+      "dateStarted": "May 12, 2018 4:09:59 PM",
+      "dateFinished": "May 12, 2018 4:10:19 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search(query):\n    query \u003d query.lower()\n    if re.match(r\u0027^\\*.+\\*$\u0027,query):\n        query \u003d query[1:-1]\n        #textframe \u003d textframe.filter(textframe[\u0027Key\u0027].like(\u0027%\u0027+query+\u0027%\u0027))\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet\",200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*$\u0027,x))\n    elif re.match(r\".+\\*$\",query):\n        query \u003d query[:-1]\n        #textframe\u003dtextframe.filter(textframe[\u0027Key\u0027].startswith(query))\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027.*\\t.*$\u0027,x))\n    else: #call_accuracy\n        if re.match(r\u0027^\\d+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIdigit.out\",200)\n        elif re.match(r\u0027^[a-zA-Z ]+$\u0027,query):\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/alphabet_\"+query[0],200)\n        else:\n            IndexDic \u003d sc.textFile(\"Bigdata/Project/HashIndex/IIALL\",200)\n        in388 \u003d IndexDic.filter(lambda x: re.match(r\u0027^\u0027+query+\u0027\\t.*$\u0027,x))\n    insplit \u003d in388.flatMap(lambda x:x.split(\u0027\\t\u0027)[1].split(\u0027;;;;\u0027)).map(lambda x: (x.split(\u0027::::\u0027)[0],x.split(\u0027::::\u0027)[1]))\n    return insplit.reduceByKey(lambda x,y:int(x)+int(y)).map(lambda x: (x[0],int(x[1]))).sortBy(lambda x: -int(x[1]))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525703586892_-573879356",
+      "id": "20180507-103306_1943893192",
+      "dateCreated": "May 7, 2018 10:33:06 AM",
+      "dateStarted": "May 13, 2018 2:30:08 PM",
+      "dateFinished": "May 13, 2018 2:30:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_sim(filecolumn,value):\n    ColSig \u003d sc.textFile(\u0027/user/tw1682/Bigdata/Project/ColSignature/ColSig\u0027)\n    querySig \u003d ColSig.map(lambda x: (x.split(\u0027\\t\u0027)[0],x.split(\u0027\\t\u0027)[1].split(\u0027,\u0027))).filter(lambda x:x[0] \u003d\u003d filecolumn)\n    if not querySig.isEmpty():\n        querySig \u003d querySig.first()\n        SigList \u003d ColSig.map(lambda x:(x.split(\u0027\\t\u0027)[0],sum([x.split(\u0027\\t\u0027)[1].split(\u0027,\u0027)[i] \u003d\u003d querySig[0][i] for i in range(6)])/(12-sum([x.split(\u0027\\t\u0027)[1].split(\u0027,\u0027)[i] \u003d\u003d querySig[0][i] for i in range(6)])))).sortBy(lambda x:x[1],ascending\u003d False)\n    else:\n        SigList \u003d None\n    return SigList",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525659943021_1894715109",
+      "id": "20180506-222543_1132179579",
+      "dateCreated": "May 6, 2018 10:25:43 PM",
+      "dateStarted": "May 13, 2018 2:30:11 PM",
+      "dateFinished": "May 13, 2018 2:30:34 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nfrom difflib import SequenceMatcher\ndef similar(a, b):\n    return SequenceMatcher(None, a, b).ratio()\ndef search_tname(query):\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/Tname.out\u0027)\n    query \u003d query.strip(\u0027*\u0027)\n    collist \u003d T.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*\u0027,x.lower())).map(lambda x:(x.split(\u0027\\t\u0027)[0],x.split(\u0027\\t\u0027)[1]))\n    return collist.map(lambda x:(x[1],similar(x[0],query))).sortBy(lambda x:-x[1])\n",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525659945771_-1683849735",
+      "id": "20180506-222545_1518832130",
+      "dateCreated": "May 6, 2018 10:25:45 PM",
+      "dateStarted": "May 13, 2018 2:30:40 PM",
+      "dateFinished": "May 13, 2018 2:30:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_att(query):\n    query \u003d query.split(\u0027(\u0027)[0]\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/att.out\u0027)\n    collist \u003d T.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*\u0027,x))\n    return collist.flatMap(lambda x:x.split(\u0027\\t\u0027)[1].split(\u0027;;\u0027)).sortBy(lambda x: x).map(lambda x:(x,1))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525701257821_1257695324",
+      "id": "20180507-095417_1564512148",
+      "dateCreated": "May 7, 2018 9:54:17 AM",
+      "dateStarted": "May 13, 2018 2:30:42 PM",
+      "dateFinished": "May 13, 2018 2:30:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_category(query):\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/category.out\u0027)\n    collist \u003d T.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*\u0027,x))\n    return collist.flatMap(lambda x:x.split(\u0027\\t\u0027)[1].split(\u0027;;\u0027)).sortBy(lambda x: x)",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525701284560_124456572",
+      "id": "20180507-095444_91712675",
+      "dateCreated": "May 7, 2018 9:54:44 AM",
+      "dateStarted": "May 13, 2018 2:30:44 PM",
+      "dateFinished": "May 13, 2018 2:30:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_category(queries):\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/category.out\u0027)\n    flag \u003d True\n    for query in queries:\n        query \u003d query.lower()\n        if flag:\n            expression \u003d \u0027(^.*\u0027+query+\u0027.*\\t.*)\u0027\n            flag \u003d False\n        else:\n            expression \u003d expression + \u0027|(^.*\u0027+query+\u0027.*\\t.*)\u0027\n    \n    collist \u003d T.filter(lambda x: re.match(r\u0027\u0027+expression,x.lower()))\n    return collist.flatMap(lambda x:x.split(\u0027\\t\u0027)[1].split(\u0027;;\u0027)).sortBy(lambda x: x).map(lambda x: (x,1))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525706666153_726180599",
+      "id": "20180507-112426_630623909",
+      "dateCreated": "May 7, 2018 11:24:26 AM",
+      "dateStarted": "May 13, 2018 2:30:45 PM",
+      "dateFinished": "May 13, 2018 2:30:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndef search_cname(query):\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/cname.out\u0027)\n    collist \u003d T.filter(lambda x: re.match(r\u0027^.*\u0027+query+\u0027.*\\t.*\u0027,x.lower())).map(lambda x:(x.split(\u0027\\t\u0027)[0],x.split(\u0027\\t\u0027)[1]))\n    return collist.map(lambda x:(x[1],similar(x[0],query))).sortBy(lambda x:-x[1])",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:30:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525731585780_-1628627157",
+      "id": "20180507-181945_51259066",
+      "dateCreated": "May 7, 2018 6:19:45 PM",
+      "dateStarted": "May 13, 2018 2:30:48 PM",
+      "dateFinished": "May 13, 2018 2:30:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\n\u003cdiv style \u003d\"background-color:#ecf0f1;height:50px\"\u003e\u003c/div\u003e\n\u003cdiv style \u003d \"font-weight: bold;\n    font-size: 60px;\n    text-align: center;\n    z-index: 1000;\n    background: #ecf0f1;\n    color: #486893;\n    height:80px\"\u003eWelcome to Sparkle Search Engine\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#566070;height:7px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#ecf0f1;height:4px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#7793a3;height:5px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#ecf0f1;height:30px\"\u003e\u003c/div\u003e\n",
+      "user": "anonymous",
+      "dateUpdated": "May 12, 2018 4:09:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003cdiv style \u003d\"background-color:#ecf0f1;height:50px\"\u003e\u003c/div\u003e\n\u003cdiv style \u003d \"font-weight: bold;\n    font-size: 60px;\n    text-align: center;\n    z-index: 1000;\n    background: #ecf0f1;\n    color: #486893;\n    height:80px\"\u003eWelcome to Sparkle Search Engine\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#566070;height:7px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#ecf0f1;height:4px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#7793a3;height:5px\"\u003e\u003c/div\u003e\n    \u003cdiv style \u003d\"background-color:#ecf0f1;height:30px\"\u003e\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525802115715_-21453093",
+      "id": "20180508-135515_1091516277",
+      "dateCreated": "May 8, 2018 1:55:15 PM",
+      "dateStarted": "May 12, 2018 4:09:59 PM",
+      "dateFinished": "May 12, 2018 4:09:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "General Search",
+      "text": "%spark.pyspark\n#print(\"%html \u003cform\u003esdfsd\u003cinput fsfs/\u003e\u003c/form\u003e\")\na \u003d 1\nb \u003d 2\n#print(\"%html \u003cform\u003e\u003cdiv style \u003d \u0027text-align:right\u0027\u003e \u003cbutton\u003eSearch\u003c/button\u003e\u003c/div\u003e\u003c/form\u003e\")\ncategory_list \u003d [(\"Business\",\"Business\"), (\"Health\",\"Health\"), (\"Housing \u0026 Development\",\"Housing \u0026 Development\"),(\"Recreation\",\"Recreation\"),(\"Environment\",\"Environment\"),(\"Social Services\",\"Social Services\"),(\"Transportation\",\"Transportation\"),(\"NYC BigApps\",\"NYC BigApps\")]\ncate \u003d z.checkbox(\"CATEGORY\", category_list, [\"apple\"])\nagency_list \u003d [(\u0027blank\u0027,\u0027 \u0027),(\u0027Civil Service Commission (CSC)\u0027, \u0027Civil Service Commission (CSC)\u0027),\n (\u0027Civilian Complaint Review Board (CCRB)\u0027,\n  \u0027Civilian Complaint Review Board (CCRB)\u0027),\n (\u0027Columbus Avenue BID\u0027, \u0027Columbus Avenue BID\u0027),\n (\u0027Department of Housing Preservation and Development (HPD)\u0027,\n  \u0027Department of Housing Preservation and Development (HPD)\u0027),\n (\u0027Departments of Records and Information Services (DORIS)\u0027,\n  \u0027Departments of Records and Information Services (DORIS)\u0027),\n (\u0027Downtown Alliance\u0027, \u0027Downtown Alliance\u0027),\n (\u0027Mayor’s Office for Economic Opportunity\u0027,\n  \u0027Mayor’s Office for Economic Opportunity\u0027),\n (\u0027Department of Sanitation (DSNY)\u0027, \u0027Department of Sanitation (DSNY)\u0027),\n (\u0027Grand Central Partnership (GCP)\u0027, \u0027Grand Central Partnership (GCP)\u0027),\n (\u0027Manhattan Borough President (MBP)\u0027, \u0027Manhattan Borough President (MBP)\u0027),\n (\u0027Fire Department of New York City (FDNY)\u0027,\n  \u0027Fire Department of New York City (FDNY)\u0027),\n (\u0027Law Department (LAW)\u0027, \u0027Law Department (LAW)\u0027),\n (\"Mayor\u0027s Office of Data Analytics (MODA)\",\n  \"Mayor\u0027s Office of Data Analytics (MODA)\"),\n (\u0027Department of Mental Health and Hygeine\u0027,\n  \u0027Department of Mental Health and Hygeine\u0027),\n (\"Mayor\u0027s Office to Combat Domestic Violence\",\n  \"Mayor\u0027s Office to Combat Domestic Violence\"),\n (\u0027New York City Tax Commission (TAXCOMM)\u0027,\n  \u0027New York City Tax Commission (TAXCOMM)\u0027),\n (\u0027School Construction Authority (SCA)\u0027,\n  \u0027School Construction Authority (SCA)\u0027),\n (\u0027Business Integrity Commission\u0027, \u0027Business Integrity Commission\u0027),\n (\u0027Department of Buildings (DOB)\u0027, \u0027Department of Buildings (DOB)\u0027),\n (\u0027HHS Accelerator\u0027, \u0027HHS Accelerator\u0027),\n (\"Mayor\u0027s Office of Operations (OPS)\", \"Mayor\u0027s Office of Operations (OPS)\"),\n (\"Mayor\u0027s Office of Operations (Ops)\", \"Mayor\u0027s Office of Operations (Ops)\"),\n (\u0027Department of Health and Mental Hygiene (DOHMH)\u0027,\n  \u0027Department of Health and Mental Hygiene (DOHMH)\u0027),\n (\u0027Lincoln Square BID\u0027, \u0027Lincoln Square BID\u0027),\n (\"Mayor\u0027s Office to Combat Domestic Violence (OCDV)\",\n  \"Mayor\u0027s Office to Combat Domestic Violence (OCDV)\"),\n (\u0027Office of Administrative Trials and Hearings (OATH)\u0027,\n  \u0027Office of Administrative Trials and Hearings (OATH)\u0027),\n (\u0027Office of the Mayor (OTM)\u0027, \u0027Office of the Mayor (OTM)\u0027),\n (\"Administration for Children\u0027s Services (ACS)\",\n  \"Administration for Children\u0027s Services (ACS)\"),\n (\u0027Fashion Center BID\u0027, \u0027Fashion Center BID\u0027),\n (\u0027Landmarks Preservation Commission (LPC)\u0027,\n  \u0027Landmarks Preservation Commission (LPC)\u0027),\n (\u0027NYC EDC\u0027, \u0027NYC EDC\u0027),\n (\u0027New York City Housing Authority (NYCHA)\u0027,\n  \u0027New York City Housing Authority (NYCHA)\u0027),\n (\u0027Police Pension Fund (NYCPPF)\u0027, \u0027Police Pension Fund (NYCPPF)\u0027),\n (\u0027Board of Elections (BOENY)\u0027, \u0027Board of Elections (BOENY)\u0027),\n (\u0027New York City Council (NYCC)\u0027, \u0027New York City Council (NYCC)\u0027),\n (\"Commission on Women\u0027s Issues (CWI)\", \"Commission on Women\u0027s Issues (CWI)\"),\n (\u0027DOE\u0027, \u0027DOE\u0027),\n (\u0027Department of Environmental Protection (DEP)\u0027,\n  \u0027Department of Environmental Protection (DEP)\u0027),\n (\u0027Department of Investigation (DOI)\u0027, \u0027Department of Investigation (DOI)\u0027),\n (\u0027Department of Parks and Recreation (DPR)\u0027,\n  \u0027Department of Parks and Recreation (DPR)\u0027),\n (\u0027Department of Youth and Community Development (DYCD)\u0027,\n  \u0027Department of Youth and Community Development (DYCD)\u0027),\n (\"Mayor\u0027s Office of Climate Policy and Programs\",\n  \"Mayor\u0027s Office of Climate Policy and Programs\"),\n (\"Mayor\u0027s Office of Sustainability (MOS)\",\n  \"Mayor\u0027s Office of Sustainability (MOS)\"),\n (\u0027311, DoITT\u0027, \u0027311, DoITT\u0027),\n (\u0027Department of Information Technology \u0026 Telecommunications (DoITT)\u0027,\n  \u0027Department of Information Technology \u0026 Telecommunications (DoITT)\u0027),\n (\u0027NYC Service (NYCSERVICE)\u0027, \u0027NYC Service (NYCSERVICE)\u0027),\n (\u0027Taxi and Limousine Commission (TLC)\u0027,\n  \u0027Taxi and Limousine Commission (TLC)\u0027),\n (\u0027Department of Environmental Protection\u0027,\n  \u0027Department of Environmental Protection\u0027),\n (\u0027Fire Department New York City\u0027, \u0027Fire Department New York City\u0027),\n (\u0027Jamaica Center BID\u0027, \u0027Jamaica Center BID\u0027),\n (\"Mayor\u0027s Office of Management \u0026 Budget (OMB)\",\n  \"Mayor\u0027s Office of Management \u0026 Budget (OMB)\"),\n (\u0027NYC School Construction Authority (SCA)\u0027,\n  \u0027NYC School Construction Authority (SCA)\u0027),\n (\u0027Department of Business (DOB)\u0027, \u0027Department of Business (DOB)\u0027),\n (\u0027Department of City Planning (DCP)\u0027, \u0027Department of City Planning (DCP)\u0027),\n (\u0027Department of City Planning\u0027, \u0027Department of City Planning\u0027),\n (\u0027Department of Small Business Services (SBS)\u0027,\n  \u0027Department of Small Business Services (SBS)\u0027),\n (\u0027Human Resource Administration (HRA)\u0027,\n  \u0027Human Resource Administration (HRA)\u0027),\n (\"Mayor\u0027s Office for Economic Opportunity\",\n  \"Mayor\u0027s Office for Economic Opportunity\"),\n (\"Mayor\u0027s Office of Media And Entertainment (MOME)\",\n  \"Mayor\u0027s Office of Media And Entertainment (MOME)\"),\n (\u0027Grand Street BID\u0027, \u0027Grand Street BID\u0027),\n (\"Mayor\u0027s Office of Contract Services (MOCS)\",\n  \"Mayor\u0027s Office of Contract Services (MOCS)\"),\n (\u0027NYC Independent Budget Office (IBO), Property, Personal Income, Mortgage Recording, Commercial Rent, Conveyance of Real Property, Transfers to Debt Service Funds, Unincorporated Business Income,\u0027,\n  \u0027NYC Independent Budget Office (IBO), Property, Personal Income, Mortgage Recording, Commercial Rent, Conveyance of Real Property, Transfers to Debt Service Funds, Unincorporated Business Income,\u0027),\n (\u0027Department of Finance (DOF)\u0027, \u0027Department of Finance (DOF)\u0027),\n (\u0027Department of Information Technology and Telecommunications\u0027,\n  \u0027Department of Information Technology and Telecommunications\u0027),\n (\u0027Department of Transportation -  DOT\u0027,\n  \u0027Department of Transportation -  DOT\u0027),\n (\u0027Downtown Brooklyn Partnership (DBP)\u0027,\n  \u0027Downtown Brooklyn Partnership (DBP)\u0027),\n (\u0027Fulton Mall Improvement Association\u0027,\n  \u0027Fulton Mall Improvement Association\u0027),\n (\u0027Office of Chief Medical Examiner (OCME)\u0027,\n  \u0027Office of Chief Medical Examiner (OCME)\u0027),\n (\"Administration for Children\u0027s Services, Department for the Aging, Department of Health and Mental Hygiene, the Department of Youth and Community Development, and the Department of Social Services\",\n  \"Administration for Children\u0027s Services, Department for the Aging, Department of Health and Mental Hygiene, the Department of Youth and Community Development, and the Department of Social Services\"),\n (\u0027Department of Correction (DOC)\u0027, \u0027Department of Correction (DOC)\u0027),\n (\u0027NYC Dpartment of Education\u0027, \u0027NYC Dpartment of Education\u0027),\n (\u0027311\u0027, \u0027311\u0027),\n (\u0027Business Integrity Commission (BIC)\u0027,\n  \u0027Business Integrity Commission (BIC)\u0027),\n (\u0027Office of Emergency Management (OEM)\u0027,\n  \u0027Office of Emergency Management (OEM)\u0027),\n (\u0027Union Square Partnership (USP)\u0027, \u0027Union Square Partnership (USP)\u0027),\n (\u0027Department of Housing Preservation \u0026 Development (HPD)\u0027,\n  \u0027Department of Housing Preservation \u0026 Development (HPD)\u0027),\n (\u0027Mayor’s Office of Operations (OPS)\u0027, \u0027Mayor’s Office of Operations (OPS)\u0027),\n (\u0027NYC Dept of Education\u0027, \u0027NYC Dept of Education\u0027),\n (\u0027Brooklyn Public Library (BPL)\u0027, \u0027Brooklyn Public Library (BPL)\u0027),\n (\u0027Department of Probation (DOP)\u0027, \u0027Department of Probation (DOP)\u0027),\n (\u0027Department of Transportation (DOT)\u0027, \u0027Department of Transportation (DOT)\u0027),\n (\u0027Montague Street Business Improvement District (BID)\u0027,\n  \u0027Montague Street Business Improvement District (BID)\u0027),\n (\u0027Office of Payroll Administration (OPA)\u0027,\n  \u0027Office of Payroll Administration (OPA)\u0027),\n (\u0027Independent Budget Office (IFO)\u0027, \u0027Independent Budget Office (IFO)\u0027),\n (\u0027Police Department (NYPD)\u0027, \u0027Police Department (NYPD)\u0027),\n (\u0027Queens Library (QBPL)\u0027, \u0027Queens Library (QBPL)\u0027),\n (\u0027Department of Design and Construction (DDC)\u0027,\n  \u0027Department of Design and Construction (DDC)\u0027),\n (\u0027Department of Information Technology \u0026 Telecommunications(DoITT)\u0027,\n  \u0027Department of Information Technology \u0026 Telecommunications(DoITT)\u0027),\n (\u0027Department of Parks and Recreation\u0027, \u0027Department of Parks and Recreation\u0027),\n (\u0027NYC Department of Sanitation\u0027, \u0027NYC Department of Sanitation\u0027),\n (\u0027Times Square Alliance (TSA)\u0027, \u0027Times Square Alliance (TSA)\u0027),\n (\u0027Mayor’s Office of Sustainability (MOS)\u0027,\n  \u0027Mayor’s Office of Sustainability (MOS)\u0027),\n (\u0027Department of Education\u0027, \u0027Department of Education\u0027),\n (\u0027Department of Homeless Services (DHS)\u0027,\n  \u0027Department of Homeless Services (DHS)\u0027),\n (\u0027Latin Media \u0026 Entertainment Commission (LMEC)\u0027,\n  \u0027Latin Media \u0026 Entertainment Commission (LMEC)\u0027),\n (\u0027Village Alliance\u0027, \u0027Village Alliance\u0027),\n (\u0027Department of Consumer Affairs (DCA)\u0027,\n  \u0027Department of Consumer Affairs (DCA)\u0027),\n (\u0027Manhattan Borough President\u0027, \u0027Manhattan Borough President\u0027),\n (\u0027Taxi and Limousine Commision\u0027, \u0027Taxi and Limousine Commision\u0027),\n (\"Mayor\u0027s Office of Housing Recovery\", \"Mayor\u0027s Office of Housing Recovery\"),\n (\u0027Mayor’s Office of Media and Entertainment (MOME)\u0027,\n  \u0027Mayor’s Office of Media and Entertainment (MOME)\u0027),\n (\u0027Taxi and Limousine  Commission (TLC)\u0027,\n  \u0027Taxi and Limousine  Commission (TLC)\u0027),\n (\u0027City Council (NYCC)\u0027, \u0027City Council (NYCC)\u0027),\n (\u0027Department for the Aging (DFTA)\u0027, \u0027Department for the Aging (DFTA)\u0027),\n (\u0027DOT\u0027, \u0027DOT\u0027),\n (\u0027Department of Transportation\u0027, \u0027Department of Transportation\u0027),\n (\"Mayor\u0027s Office of Adult Education (ADULTED)\",\n  \"Mayor\u0027s Office of Adult Education (ADULTED)\"),\n (\u0027New York City Department of Education\u0027,\n  \u0027New York City Department of Education\u0027),\n (\u0027Department of Information Technology and Telecommunications (DOITT)\u0027,\n  \u0027Department of Information Technology and Telecommunications (DOITT)\u0027),\n (\u0027Department of Information Technology and Telecommunications (DoITT)\u0027,\n  \u0027Department of Information Technology and Telecommunications (DoITT)\u0027),\n (\u0027Human Resources Administration (HRA)\u0027,\n  \u0027Human Resources Administration (HRA)\u0027),\n (\u0027Department of Citywide Administrative Services (DCAS)\u0027,\n  \u0027Department of Citywide Administrative Services (DCAS)\u0027),\n (\u0027Economic Development Corporation (EDC)\u0027,\n  \u0027Economic Development Corporation (EDC)\u0027),\n (\"Mayor\u0027s Office of Management and Budget (OMB)\",\n  \"Mayor\u0027s Office of Management and Budget (OMB)\"),\n (\u0027New York Public Library (NYPL)\u0027, \u0027New York Public Library (NYPL)\u0027),\n (\u0027Office of Citywide Event Coordination and Management (CECM)\u0027,\n  \u0027Office of Citywide Event Coordination and Management (CECM)\u0027),\n (\u0027Office of Film, Theatre, and Broadcasting (FILM)\u0027,\n  \u0027Office of Film, Theatre, and Broadcasting (FILM)\u0027),\n (\u0027Department of Cultural Affairs (DCLA)\u0027,\n  \u0027Department of Cultural Affairs (DCLA)\u0027),\n (\u0027Department of Buildings (DOB), Fire Department of New York City (FDNY), Department of Housing Preservation and Development (HPD), Department of Health and Mental Hygiene (DOHMH)\u0027,\n  \u0027Department of Buildings (DOB), Fire Department of New York City (FDNY), Department of Housing Preservation and Development (HPD), Department of Health and Mental Hygiene (DOHMH)\u0027),\n (\u0027Department of Records and Information Services (RECORDS)\u0027,\n  \u0027Department of Records and Information Services (RECORDS)\u0027),\n (\u0027NYC Department of Education\u0027, \u0027NYC Department of Education\u0027),\n (\u0027Campaign Finance Board (CFB)\u0027, \u0027Campaign Finance Board (CFB)\u0027),\n (\u0027Conflicts of Interest Board (COIB)\u0027, \u0027Conflicts of Interest Board (COIB)\u0027),\n (\u0027Department of Education (DOE)\u0027, \u0027Department of Education (DOE)\u0027),\n (\u0027Department of Health and Mental Hygiene\u0027,\n  \u0027Department of Health and Mental Hygiene\u0027),\n (\u0027Health and Hospitals Corporation (HHC)\u0027,\n  \u0027Health and Hospitals Corporation (HHC)\u0027),\n (\u0027Mayor’s Office of Management \u0026 Budget (OMB)\u0027,\n  \u0027Mayor’s Office of Management \u0026 Budget (OMB)\u0027),\n (\u0027NYC Independent Budget Office (IBO)\u0027,\n  \u0027NYC Independent Budget Office (IBO)\u0027)]\nagen \u003d z.select(\"AGENCY\",agency_list)\n\nqtype \u003d z.select(\"ITYPE\",[(\"default\",\"Sparkling\"),(\"keywords\",\"keyword in column\"),(\"column\",\"column name\"),(\"table\",\"table name\"),(\"similarity\",\"column similarity\")])\nkeyw \u003d z.input(\u0027KEYWORD\u0027)\n",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:31:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python",
+        "runOnSelectionChange": false,
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {
+          "AGENCY": "Taxi and Limousine Commission (TLC)",
+          "CATEGORY": [
+            "apple"
+          ],
+          "ITYPE": "similarity",
+          "KEYWORD": "",
+          "SIMILARITY RANGE": "",
+          "Table": "",
+          "TableColumn": "jb3k-j3qg.json,,,,2"
+        },
+        "forms": {
+          "CATEGORY": {
+            "name": "CATEGORY",
+            "displayName": "CATEGORY",
+            "type": "checkbox",
+            "defaultValue": [
+              "apple"
+            ],
+            "options": [
+              {
+                "value": "Business",
+                "displayName": "Business"
+              },
+              {
+                "value": "Health",
+                "displayName": "Health"
+              },
+              {
+                "value": "Housing \u0026 Development",
+                "displayName": "Housing \u0026 Development"
+              },
+              {
+                "value": "Recreation",
+                "displayName": "Recreation"
+              },
+              {
+                "value": "Environment",
+                "displayName": "Environment"
+              },
+              {
+                "value": "Social Services",
+                "displayName": "Social Services"
+              },
+              {
+                "value": "Transportation",
+                "displayName": "Transportation"
+              },
+              {
+                "value": "NYC BigApps",
+                "displayName": "NYC BigApps"
+              }
+            ],
+            "hidden": false
+          },
+          "AGENCY": {
+            "name": "AGENCY",
+            "displayName": "AGENCY",
+            "type": "select",
+            "defaultValue": "",
+            "options": [
+              {
+                "value": "blank",
+                "displayName": " "
+              },
+              {
+                "value": "Civil Service Commission (CSC)",
+                "displayName": "Civil Service Commission (CSC)"
+              },
+              {
+                "value": "Civilian Complaint Review Board (CCRB)",
+                "displayName": "Civilian Complaint Review Board (CCRB)"
+              },
+              {
+                "value": "Columbus Avenue BID",
+                "displayName": "Columbus Avenue BID"
+              },
+              {
+                "value": "Department of Housing Preservation and Development (HPD)",
+                "displayName": "Department of Housing Preservation and Development (HPD)"
+              },
+              {
+                "value": "Departments of Records and Information Services (DORIS)",
+                "displayName": "Departments of Records and Information Services (DORIS)"
+              },
+              {
+                "value": "Downtown Alliance",
+                "displayName": "Downtown Alliance"
+              },
+              {
+                "value": "Mayor’s Office for Economic Opportunity",
+                "displayName": "Mayor’s Office for Economic Opportunity"
+              },
+              {
+                "value": "Department of Sanitation (DSNY)",
+                "displayName": "Department of Sanitation (DSNY)"
+              },
+              {
+                "value": "Grand Central Partnership (GCP)",
+                "displayName": "Grand Central Partnership (GCP)"
+              },
+              {
+                "value": "Manhattan Borough President (MBP)",
+                "displayName": "Manhattan Borough President (MBP)"
+              },
+              {
+                "value": "Fire Department of New York City (FDNY)",
+                "displayName": "Fire Department of New York City (FDNY)"
+              },
+              {
+                "value": "Law Department (LAW)",
+                "displayName": "Law Department (LAW)"
+              },
+              {
+                "value": "Mayor\u0027s Office of Data Analytics (MODA)",
+                "displayName": "Mayor\u0027s Office of Data Analytics (MODA)"
+              },
+              {
+                "value": "Department of Mental Health and Hygeine",
+                "displayName": "Department of Mental Health and Hygeine"
+              },
+              {
+                "value": "Mayor\u0027s Office to Combat Domestic Violence",
+                "displayName": "Mayor\u0027s Office to Combat Domestic Violence"
+              },
+              {
+                "value": "New York City Tax Commission (TAXCOMM)",
+                "displayName": "New York City Tax Commission (TAXCOMM)"
+              },
+              {
+                "value": "School Construction Authority (SCA)",
+                "displayName": "School Construction Authority (SCA)"
+              },
+              {
+                "value": "Business Integrity Commission",
+                "displayName": "Business Integrity Commission"
+              },
+              {
+                "value": "Department of Buildings (DOB)",
+                "displayName": "Department of Buildings (DOB)"
+              },
+              {
+                "value": "HHS Accelerator",
+                "displayName": "HHS Accelerator"
+              },
+              {
+                "value": "Mayor\u0027s Office of Operations (OPS)",
+                "displayName": "Mayor\u0027s Office of Operations (OPS)"
+              },
+              {
+                "value": "Mayor\u0027s Office of Operations (Ops)",
+                "displayName": "Mayor\u0027s Office of Operations (Ops)"
+              },
+              {
+                "value": "Department of Health and Mental Hygiene (DOHMH)",
+                "displayName": "Department of Health and Mental Hygiene (DOHMH)"
+              },
+              {
+                "value": "Lincoln Square BID",
+                "displayName": "Lincoln Square BID"
+              },
+              {
+                "value": "Mayor\u0027s Office to Combat Domestic Violence (OCDV)",
+                "displayName": "Mayor\u0027s Office to Combat Domestic Violence (OCDV)"
+              },
+              {
+                "value": "Office of Administrative Trials and Hearings (OATH)",
+                "displayName": "Office of Administrative Trials and Hearings (OATH)"
+              },
+              {
+                "value": "Office of the Mayor (OTM)",
+                "displayName": "Office of the Mayor (OTM)"
+              },
+              {
+                "value": "Administration for Children\u0027s Services (ACS)",
+                "displayName": "Administration for Children\u0027s Services (ACS)"
+              },
+              {
+                "value": "Fashion Center BID",
+                "displayName": "Fashion Center BID"
+              },
+              {
+                "value": "Landmarks Preservation Commission (LPC)",
+                "displayName": "Landmarks Preservation Commission (LPC)"
+              },
+              {
+                "value": "NYC EDC",
+                "displayName": "NYC EDC"
+              },
+              {
+                "value": "New York City Housing Authority (NYCHA)",
+                "displayName": "New York City Housing Authority (NYCHA)"
+              },
+              {
+                "value": "Police Pension Fund (NYCPPF)",
+                "displayName": "Police Pension Fund (NYCPPF)"
+              },
+              {
+                "value": "Board of Elections (BOENY)",
+                "displayName": "Board of Elections (BOENY)"
+              },
+              {
+                "value": "New York City Council (NYCC)",
+                "displayName": "New York City Council (NYCC)"
+              },
+              {
+                "value": "Commission on Women\u0027s Issues (CWI)",
+                "displayName": "Commission on Women\u0027s Issues (CWI)"
+              },
+              {
+                "value": "DOE",
+                "displayName": "DOE"
+              },
+              {
+                "value": "Department of Environmental Protection (DEP)",
+                "displayName": "Department of Environmental Protection (DEP)"
+              },
+              {
+                "value": "Department of Investigation (DOI)",
+                "displayName": "Department of Investigation (DOI)"
+              },
+              {
+                "value": "Department of Parks and Recreation (DPR)",
+                "displayName": "Department of Parks and Recreation (DPR)"
+              },
+              {
+                "value": "Department of Youth and Community Development (DYCD)",
+                "displayName": "Department of Youth and Community Development (DYCD)"
+              },
+              {
+                "value": "Mayor\u0027s Office of Climate Policy and Programs",
+                "displayName": "Mayor\u0027s Office of Climate Policy and Programs"
+              },
+              {
+                "value": "Mayor\u0027s Office of Sustainability (MOS)",
+                "displayName": "Mayor\u0027s Office of Sustainability (MOS)"
+              },
+              {
+                "value": "311, DoITT",
+                "displayName": "311, DoITT"
+              },
+              {
+                "value": "Department of Information Technology \u0026 Telecommunications (DoITT)",
+                "displayName": "Department of Information Technology \u0026 Telecommunications (DoITT)"
+              },
+              {
+                "value": "NYC Service (NYCSERVICE)",
+                "displayName": "NYC Service (NYCSERVICE)"
+              },
+              {
+                "value": "Taxi and Limousine Commission (TLC)",
+                "displayName": "Taxi and Limousine Commission (TLC)"
+              },
+              {
+                "value": "Department of Environmental Protection",
+                "displayName": "Department of Environmental Protection"
+              },
+              {
+                "value": "Fire Department New York City",
+                "displayName": "Fire Department New York City"
+              },
+              {
+                "value": "Jamaica Center BID",
+                "displayName": "Jamaica Center BID"
+              },
+              {
+                "value": "Mayor\u0027s Office of Management \u0026 Budget (OMB)",
+                "displayName": "Mayor\u0027s Office of Management \u0026 Budget (OMB)"
+              },
+              {
+                "value": "NYC School Construction Authority (SCA)",
+                "displayName": "NYC School Construction Authority (SCA)"
+              },
+              {
+                "value": "Department of Business (DOB)",
+                "displayName": "Department of Business (DOB)"
+              },
+              {
+                "value": "Department of City Planning (DCP)",
+                "displayName": "Department of City Planning (DCP)"
+              },
+              {
+                "value": "Department of City Planning",
+                "displayName": "Department of City Planning"
+              },
+              {
+                "value": "Department of Small Business Services (SBS)",
+                "displayName": "Department of Small Business Services (SBS)"
+              },
+              {
+                "value": "Human Resource Administration (HRA)",
+                "displayName": "Human Resource Administration (HRA)"
+              },
+              {
+                "value": "Mayor\u0027s Office for Economic Opportunity",
+                "displayName": "Mayor\u0027s Office for Economic Opportunity"
+              },
+              {
+                "value": "Mayor\u0027s Office of Media And Entertainment (MOME)",
+                "displayName": "Mayor\u0027s Office of Media And Entertainment (MOME)"
+              },
+              {
+                "value": "Grand Street BID",
+                "displayName": "Grand Street BID"
+              },
+              {
+                "value": "Mayor\u0027s Office of Contract Services (MOCS)",
+                "displayName": "Mayor\u0027s Office of Contract Services (MOCS)"
+              },
+              {
+                "value": "NYC Independent Budget Office (IBO), Property, Personal Income, Mortgage Recording, Commercial Rent, Conveyance of Real Property, Transfers to Debt Service Funds, Unincorporated Business Income,",
+                "displayName": "NYC Independent Budget Office (IBO), Property, Personal Income, Mortgage Recording, Commercial Rent, Conveyance of Real Property, Transfers to Debt Service Funds, Unincorporated Business Income,"
+              },
+              {
+                "value": "Department of Finance (DOF)",
+                "displayName": "Department of Finance (DOF)"
+              },
+              {
+                "value": "Department of Information Technology and Telecommunications",
+                "displayName": "Department of Information Technology and Telecommunications"
+              },
+              {
+                "value": "Department of Transportation -  DOT",
+                "displayName": "Department of Transportation -  DOT"
+              },
+              {
+                "value": "Downtown Brooklyn Partnership (DBP)",
+                "displayName": "Downtown Brooklyn Partnership (DBP)"
+              },
+              {
+                "value": "Fulton Mall Improvement Association",
+                "displayName": "Fulton Mall Improvement Association"
+              },
+              {
+                "value": "Office of Chief Medical Examiner (OCME)",
+                "displayName": "Office of Chief Medical Examiner (OCME)"
+              },
+              {
+                "value": "Administration for Children\u0027s Services, Department for the Aging, Department of Health and Mental Hygiene, the Department of Youth and Community Development, and the Department of Social Services",
+                "displayName": "Administration for Children\u0027s Services, Department for the Aging, Department of Health and Mental Hygiene, the Department of Youth and Community Development, and the Department of Social Services"
+              },
+              {
+                "value": "Department of Correction (DOC)",
+                "displayName": "Department of Correction (DOC)"
+              },
+              {
+                "value": "NYC Dpartment of Education",
+                "displayName": "NYC Dpartment of Education"
+              },
+              {
+                "value": "311",
+                "displayName": "311"
+              },
+              {
+                "value": "Business Integrity Commission (BIC)",
+                "displayName": "Business Integrity Commission (BIC)"
+              },
+              {
+                "value": "Office of Emergency Management (OEM)",
+                "displayName": "Office of Emergency Management (OEM)"
+              },
+              {
+                "value": "Union Square Partnership (USP)",
+                "displayName": "Union Square Partnership (USP)"
+              },
+              {
+                "value": "Department of Housing Preservation \u0026 Development (HPD)",
+                "displayName": "Department of Housing Preservation \u0026 Development (HPD)"
+              },
+              {
+                "value": "Mayor’s Office of Operations (OPS)",
+                "displayName": "Mayor’s Office of Operations (OPS)"
+              },
+              {
+                "value": "NYC Dept of Education",
+                "displayName": "NYC Dept of Education"
+              },
+              {
+                "value": "Brooklyn Public Library (BPL)",
+                "displayName": "Brooklyn Public Library (BPL)"
+              },
+              {
+                "value": "Department of Probation (DOP)",
+                "displayName": "Department of Probation (DOP)"
+              },
+              {
+                "value": "Department of Transportation (DOT)",
+                "displayName": "Department of Transportation (DOT)"
+              },
+              {
+                "value": "Montague Street Business Improvement District (BID)",
+                "displayName": "Montague Street Business Improvement District (BID)"
+              },
+              {
+                "value": "Office of Payroll Administration (OPA)",
+                "displayName": "Office of Payroll Administration (OPA)"
+              },
+              {
+                "value": "Independent Budget Office (IFO)",
+                "displayName": "Independent Budget Office (IFO)"
+              },
+              {
+                "value": "Police Department (NYPD)",
+                "displayName": "Police Department (NYPD)"
+              },
+              {
+                "value": "Queens Library (QBPL)",
+                "displayName": "Queens Library (QBPL)"
+              },
+              {
+                "value": "Department of Design and Construction (DDC)",
+                "displayName": "Department of Design and Construction (DDC)"
+              },
+              {
+                "value": "Department of Information Technology \u0026 Telecommunications(DoITT)",
+                "displayName": "Department of Information Technology \u0026 Telecommunications(DoITT)"
+              },
+              {
+                "value": "Department of Parks and Recreation",
+                "displayName": "Department of Parks and Recreation"
+              },
+              {
+                "value": "NYC Department of Sanitation",
+                "displayName": "NYC Department of Sanitation"
+              },
+              {
+                "value": "Times Square Alliance (TSA)",
+                "displayName": "Times Square Alliance (TSA)"
+              },
+              {
+                "value": "Mayor’s Office of Sustainability (MOS)",
+                "displayName": "Mayor’s Office of Sustainability (MOS)"
+              },
+              {
+                "value": "Department of Education",
+                "displayName": "Department of Education"
+              },
+              {
+                "value": "Department of Homeless Services (DHS)",
+                "displayName": "Department of Homeless Services (DHS)"
+              },
+              {
+                "value": "Latin Media \u0026 Entertainment Commission (LMEC)",
+                "displayName": "Latin Media \u0026 Entertainment Commission (LMEC)"
+              },
+              {
+                "value": "Village Alliance",
+                "displayName": "Village Alliance"
+              },
+              {
+                "value": "Department of Consumer Affairs (DCA)",
+                "displayName": "Department of Consumer Affairs (DCA)"
+              },
+              {
+                "value": "Manhattan Borough President",
+                "displayName": "Manhattan Borough President"
+              },
+              {
+                "value": "Taxi and Limousine Commision",
+                "displayName": "Taxi and Limousine Commision"
+              },
+              {
+                "value": "Mayor\u0027s Office of Housing Recovery",
+                "displayName": "Mayor\u0027s Office of Housing Recovery"
+              },
+              {
+                "value": "Mayor’s Office of Media and Entertainment (MOME)",
+                "displayName": "Mayor’s Office of Media and Entertainment (MOME)"
+              },
+              {
+                "value": "Taxi and Limousine  Commission (TLC)",
+                "displayName": "Taxi and Limousine  Commission (TLC)"
+              },
+              {
+                "value": "City Council (NYCC)",
+                "displayName": "City Council (NYCC)"
+              },
+              {
+                "value": "Department for the Aging (DFTA)",
+                "displayName": "Department for the Aging (DFTA)"
+              },
+              {
+                "value": "DOT",
+                "displayName": "DOT"
+              },
+              {
+                "value": "Department of Transportation",
+                "displayName": "Department of Transportation"
+              },
+              {
+                "value": "Mayor\u0027s Office of Adult Education (ADULTED)",
+                "displayName": "Mayor\u0027s Office of Adult Education (ADULTED)"
+              },
+              {
+                "value": "New York City Department of Education",
+                "displayName": "New York City Department of Education"
+              },
+              {
+                "value": "Department of Information Technology and Telecommunications (DOITT)",
+                "displayName": "Department of Information Technology and Telecommunications (DOITT)"
+              },
+              {
+                "value": "Department of Information Technology and Telecommunications (DoITT)",
+                "displayName": "Department of Information Technology and Telecommunications (DoITT)"
+              },
+              {
+                "value": "Human Resources Administration (HRA)",
+                "displayName": "Human Resources Administration (HRA)"
+              },
+              {
+                "value": "Department of Citywide Administrative Services (DCAS)",
+                "displayName": "Department of Citywide Administrative Services (DCAS)"
+              },
+              {
+                "value": "Economic Development Corporation (EDC)",
+                "displayName": "Economic Development Corporation (EDC)"
+              },
+              {
+                "value": "Mayor\u0027s Office of Management and Budget (OMB)",
+                "displayName": "Mayor\u0027s Office of Management and Budget (OMB)"
+              },
+              {
+                "value": "New York Public Library (NYPL)",
+                "displayName": "New York Public Library (NYPL)"
+              },
+              {
+                "value": "Office of Citywide Event Coordination and Management (CECM)",
+                "displayName": "Office of Citywide Event Coordination and Management (CECM)"
+              },
+              {
+                "value": "Office of Film, Theatre, and Broadcasting (FILM)",
+                "displayName": "Office of Film, Theatre, and Broadcasting (FILM)"
+              },
+              {
+                "value": "Department of Cultural Affairs (DCLA)",
+                "displayName": "Department of Cultural Affairs (DCLA)"
+              },
+              {
+                "value": "Department of Buildings (DOB), Fire Department of New York City (FDNY), Department of Housing Preservation and Development (HPD), Department of Health and Mental Hygiene (DOHMH)",
+                "displayName": "Department of Buildings (DOB), Fire Department of New York City (FDNY), Department of Housing Preservation and Development (HPD), Department of Health and Mental Hygiene (DOHMH)"
+              },
+              {
+                "value": "Department of Records and Information Services (RECORDS)",
+                "displayName": "Department of Records and Information Services (RECORDS)"
+              },
+              {
+                "value": "NYC Department of Education",
+                "displayName": "NYC Department of Education"
+              },
+              {
+                "value": "Campaign Finance Board (CFB)",
+                "displayName": "Campaign Finance Board (CFB)"
+              },
+              {
+                "value": "Conflicts of Interest Board (COIB)",
+                "displayName": "Conflicts of Interest Board (COIB)"
+              },
+              {
+                "value": "Department of Education (DOE)",
+                "displayName": "Department of Education (DOE)"
+              },
+              {
+                "value": "Department of Health and Mental Hygiene",
+                "displayName": "Department of Health and Mental Hygiene"
+              },
+              {
+                "value": "Health and Hospitals Corporation (HHC)",
+                "displayName": "Health and Hospitals Corporation (HHC)"
+              },
+              {
+                "value": "Mayor’s Office of Management \u0026 Budget (OMB)",
+                "displayName": "Mayor’s Office of Management \u0026 Budget (OMB)"
+              },
+              {
+                "value": "NYC Independent Budget Office (IBO)",
+                "displayName": "NYC Independent Budget Office (IBO)"
+              }
+            ],
+            "hidden": false
+          },
+          "ITYPE": {
+            "name": "ITYPE",
+            "displayName": "ITYPE",
+            "type": "select",
+            "defaultValue": "",
+            "options": [
+              {
+                "value": "default",
+                "displayName": "Sparkling"
+              },
+              {
+                "value": "keywords",
+                "displayName": "keyword in column"
+              },
+              {
+                "value": "column",
+                "displayName": "column name"
+              },
+              {
+                "value": "table",
+                "displayName": "table name"
+              },
+              {
+                "value": "similarity",
+                "displayName": "column similarity"
+              }
+            ],
+            "hidden": false
+          },
+          "KEYWORD": {
+            "name": "KEYWORD",
+            "displayName": "KEYWORD",
+            "type": "input",
+            "defaultValue": "",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1525740642859_932915225",
+      "id": "20180507-205042_796708561",
+      "dateCreated": "May 7, 2018 8:50:42 PM",
+      "dateStarted": "May 13, 2018 2:31:10 PM",
+      "dateFinished": "May 13, 2018 2:31:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Similarity Search",
+      "text": "%spark.pyspark\nprint(\"%html \u003cform\u003e\u003cdiv style \u003d \u0027text-align:right\u0027\u003e \u003cbutton\u003eSearch\u003c/button\u003e\u003c/div\u003e\u003c/form\u003e\")\nsimqvalue \u003d z.input(\"SIMILARITY RANGE\")\nsimcolumn \u003d z.select(\"TableColumn\",[(\u0027jb3k-j3qg.json,,,,3\u0027,\u0027Medallion Drivers - Active.Type\u0027),(\u0027c4dx-tk4d.json,,,,7\u0027,\u0027Historical Medallion Drivers - Passanger Assistance Trained 2017.Type\u0027),(\u0027vwpc-kje2.json,,,,4\u0027,\u0027311 Web Content - Services.Detail_description\u0027)])",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:33:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python",
+        "runOnSelectionChange": true,
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {
+          "SIMILARITY RANGE": "1",
+          "TableColumn": "c4dx-tk4d.json,,,,7"
+        },
+        "forms": {
+          "SIMILARITY RANGE": {
+            "name": "SIMILARITY RANGE",
+            "displayName": "SIMILARITY RANGE",
+            "type": "input",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "TableColumn": {
+            "name": "TableColumn",
+            "displayName": "TableColumn",
+            "type": "select",
+            "defaultValue": "",
+            "options": [
+              {
+                "value": "jb3k-j3qg.json,,,,3",
+                "displayName": "Medallion Drivers - Active.Type"
+              },
+              {
+                "value": "c4dx-tk4d.json,,,,7",
+                "displayName": "Historical Medallion Drivers - Passanger Assistance Trained 2017.Type"
+              },
+              {
+                "value": "vwpc-kje2.json,,,,4",
+                "displayName": "311 Web Content - Services.Detail_description"
+              }
+            ],
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cform\u003e\u003cdiv style \u003d \u0027text-align:right\u0027\u003e \u003cbutton\u003eSearch\u003c/button\u003e\u003c/div\u003e\u003c/form\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525818971298_1613321060",
+      "id": "20180508-183611_1570542695",
+      "dateCreated": "May 8, 2018 6:36:11 PM",
+      "dateStarted": "May 13, 2018 2:33:08 PM",
+      "dateFinished": "May 13, 2018 2:33:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Result",
+      "text": "%spark.pyspark\nif Rsdisplay and not Rsdisplay.isEmpty():\n    print(\"%table TableName \\t FilePath \\t Weight \\n\",\u0027\\n\u0027.join(Rsdisplay.take(10)))\nelse:\n    print(\"%table TableName \\t FilePath \\t Weight \\n\",\u0027No such file \\t --- \\t ---\u0027)\n",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 3:37:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": true,
+              "setting": {
+                "scatterChart": {
+                  "xAxis": {
+                    "name": "TableName ",
+                    "index": 0.0,
+                    "aggr": "sum"
+                  },
+                  "yAxis": {
+                    "name": " count ",
+                    "index": 2.0,
+                    "aggr": "sum"
+                  }
+                }
+              }
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python",
+        "editorHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "TableName \t FilePath \t Weight \n \"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\n\"Bureau of Fire Prevention - Active Violation Orders\" \t hdfs://dumbo/user/bigdata/nyc_open_data/bi53-yph3.json\t0.09\nNDA Youth Employment Programs\" \t hdfs://dumbo/user/bigdata/nyc_open_data/mrxb-9w9v.json\t0.09\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525813036822_-991854184",
+      "id": "20180508-165716_197918477",
+      "dateCreated": "May 8, 2018 4:57:16 PM",
+      "dateStarted": "May 13, 2018 3:35:43 PM",
+      "dateFinished": "May 13, 2018 3:36:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003cdiv\u003e\n\u003cdiv style \u003d\"background-color:#94aab7;height:5px;width:52%;float:right\"\u003e\u003c/div\u003e\u003c/div\u003e\n\u003cdiv style \u003d\"background-color:#fff;height:5px;clear:both\"\u003e\u003c/div\u003e\n\u003cdiv style \u003d\"background-color:#7793a3;height:6px;clear:both\"\u003e\u003c/div\u003e",
+      "user": "anonymous",
+      "dateUpdated": "May 12, 2018 4:09:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003cdiv\u003e\n\u003cdiv style \u003d\"background-color:#94aab7;height:5px;width:52%;float:right\"\u003e\u003c/div\u003e\u003c/div\u003e\n\u003cdiv style \u003d\"background-color:#fff;height:5px;clear:both\"\u003e\u003c/div\u003e\n\u003cdiv style \u003d\"background-color:#7793a3;height:6px;clear:both\"\u003e\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525802257072_793276511",
+      "id": "20180508-135737_878718",
+      "dateCreated": "May 8, 2018 1:57:37 PM",
+      "dateStarted": "May 12, 2018 4:09:59 PM",
+      "dateFinished": "May 12, 2018 4:09:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nprint(agen)\nprint(cate)\nprint(qtype)\nprint(keyw)\nprint(simqvalue)\nprint(simcolumn)\n\nrunlist \u003d []\nif agen !\u003d \u0027blank\u0027 and agen and qtype !\u003d \u0027similarity\u0027:\n    runlist.append(search_att(agen))\n\nif len(cate) \u003e 0 and qtype !\u003d \u0027similarity\u0027:\n    runlist.append(search_category(cate))\n\nif qtype \u003d\u003d \u0027default\u0027:\n    if keyw:\n        if len(keyw.split(\u0027,\u0027)) \u003c 2:\n            if not search(keyw).isEmpty():\n                runlist.append(search(keyw).union(search_tname(keyw).map(lambda x: (x[0],x[1]*10000))).reduceByKey(lambda x,y: x+y).sortBy(lambda x:-x[1]))\n        else:\n            result \u003d search(keyw.split(\u0027,\u0027)[0])\n            keys \u003d keyw.split(\u0027,\u0027)[1:]\n            for key in keys:\n                ind \u003d search(key)\n                result \u003d result.join(ind)\n            result \u003d result.map(lambda x: (x[0],sum(x[1]))).union(search_tname(keyw).map(lambda x: (x[0],x[1]*10000))).reduceByKey(lambda x,y: x+y).sortBy(lambda x:-x[1])\n            if not result.isEmpty():\n                runlist.append(result)\n            #result.append(search_tname(keyw))\nelif qtype \u003d\u003d \u0027column\u0027:\n    if keyw:\n        if not search_cname(keyw).isEmpty():\n            runlist.append(search_cname(keyw))\nelif qtype \u003d\u003d \u0027table\u0027:\n    if keyw:\n        if not search_tname(keyw).isEmpty():\n            runlist.append(search_tname(keyw))\nelif qtype \u003d\u003d \u0027similarity\u0027:\n    if simqvalue:\n        if search_sim(simcolumn,simqvalue):\n            if simqvalue:\n                runlist \u003d [search_sim(simcolumn,simqvalue)]\n            else:\n                runlist \u003d [search_sim(simcolumn,1)]\n        else:\n            runlist \u003d []\n            print(\"Your query doesn\u0027t satisfy similarity requirement\")\n            \nelif qtype \u003d\u003d \u0027keywords\u0027:\n    if keyw:\n        if len(keyw.split(\u0027,\u0027)) \u003c 2:\n            if not search(keyw).isEmpty():\n                runlist.append(search(keyw))\n        else:\n            result \u003d search(keyw.split(\u0027,\u0027)[0])\n            keys \u003d keyw.split(\u0027,\u0027)[1:]\n            for key in keys:\n                ind \u003d search(key)\n                result \u003d result.join(key)\n            result \u003d result.map(lambda x:(x[0],sum(x[1])))\n            if not result.isEmpty():\n                runlist.append(result)\nif not runlist:\n    Rsdisplay \u003d None\nelse:\n    if len(runlist) \u003d\u003d 1:\n        Rs \u003d runlist[0]\n    else:\n        Rs\u003drunlist[0]\n        for run in runlist[1:]:\n            Rs \u003d Rs.join(run)\n            Rs\u003dRs.map(lambda x: (x[0],sum(x[1])))\n        #Rs \u003d Rs.sortBy(lambda x:-x[1])\n\n    T \u003d sc.textFile(\u0027Bigdata/Project/II_meta/Tname.out\u0027)\n    #Rsdisplay \u003d Rs.leftOuterJoin(T.map(lambda x: (x.split(\u0027\\t\u0027)[1],x.split(\u0027\\t\u0027)[0]))).sortBy(lambda x:-x[1][0]).map(lambda x:\u0027{0:s} \\t {1:s}\\t{2:.2f}\u0027.format(x[1][1],x[0],x[1][0])) \n    Rsdisplay \u003d Rs.leftOuterJoin(T.map(lambda x: (x.split(\u0027\\t\u0027)[1],x.split(\u0027\\t\u0027)[0]))).sortBy(lambda x:-x[1][0]).map(lambda x:\u0027{0:s} \\t {1:s}\\t{2:.2f}\u0027.format(x[1][1],x[0],x[1][0]))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 2:33:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Taxi and Limousine Commission (TLC)\n[]\nsimilarity\n\n1\nc4dx-tk4d.json,,,,7\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1525742354368_-1786886261",
+      "id": "20180507-211914_1374114277",
+      "dateCreated": "May 7, 2018 9:19:14 PM",
+      "dateStarted": "May 13, 2018 2:33:10 PM",
+      "dateFinished": "May 13, 2018 2:42:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nRs \u003d runlist[0]\nRs \u003d Rs.map(lambda x:(\u0027hdfs://dumbo/user/bigdata/nyc_open_data/\u0027+x[0].split(\u0027,,,,\u0027)[0],x[1]))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 3:30:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python"
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1526180478486_1254094661",
+      "id": "20180512-230118_613933280",
+      "dateCreated": "May 12, 2018 11:01:18 PM",
+      "dateStarted": "May 13, 2018 3:30:01 PM",
+      "dateFinished": "May 13, 2018 3:30:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n Rsdisplay \u003d Rs.leftOuterJoin(T.map(lambda x: (x.split(\u0027\\t\u0027)[1],x.split(\u0027\\t\u0027)[0]))).sortBy(lambda x:-x[1][0]).map(lambda x:\u0027{0:s} \\t {1:s}\\t{2:.2f}\u0027.format(x[1][1],x[0],x[1][0]))",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 3:30:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1526237760152_-1630919275",
+      "id": "20180513-145600_1040206282",
+      "dateCreated": "May 13, 2018 2:56:00 PM",
+      "dateStarted": "May 13, 2018 3:30:04 PM",
+      "dateFinished": "May 13, 2018 3:32:46 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "May 13, 2018 3:25:51 PM",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1526239551164_591382149",
+      "id": "20180513-152551_1726226156",
+      "dateCreated": "May 13, 2018 3:25:51 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "/SearchEngine/Interface",
+  "id": "2DCP1B8AS",
+  "angularObjects": {
+    "2CFXK5J4Y:shared_process": [],
+    "2CF295UYG:shared_process": [],
+    "2CD6ZRPDJ:shared_process": [],
+    "2CFG6Y8G3:shared_process": [],
+    "2CFJKQVBN:shared_process": [],
+    "2CGYXR37V:shared_process": [],
+    "2CDY97F39:shared_process": [],
+    "2CEC5KMFB:shared_process": [],
+    "2CFFWS5P3:shared_process": [],
+    "2CDM4T1EH:shared_process": [],
+    "2CG949ZHZ:shared_process": [],
+    "2CEJ86HV3:shared_process": [],
+    "2CFGNABPQ:shared_process": [],
+    "2CEZV3CHG:shared_process": [],
+    "2CDUTWP3P:shared_process": [],
+    "2CFXDXWCE:shared_process": [],
+    "2CEZMWG72:shared_process": [],
+    "2CFWFHNZR:shared_process": [],
+    "2CG23YGEZ:shared_process": []
+  },
+  "config": {
+    "looknfeel": "report",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

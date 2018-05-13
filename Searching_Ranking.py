@@ -23,7 +23,11 @@ def search_contain(query):
 	return textframe.filter(textframe['Key'].like('%'+query+'%'))
 
 
-
+def search_sim(filecolumn,value):
+    ColSig = sc.textFile('/user/tw1682/Bigdata/Project/ColSignature/ColSig')
+    querySig = ColSig.filter(lambda x:x.split('\t')[0] == filecolumn).map(lambda x: x.split('\t')[1].split(',')).collect()
+    SigList = ColSig.map(lambda x:(sum([x.split('\t')[1].split(',')[i] == querySig[0][i] for i in range(6)])/(12-sum([x.split('\t')[1].split(',')[i] == querySig[0][i] for i in range(6)])),x.split('\t')[0])).sortByKey(ascending= False)
+    return SigList
 
 def search(querys):
     flag = True
@@ -64,4 +68,4 @@ def search(querys):
         result = result.intersection(in388)
     Blurkey = result.map(lambda x: x.split('\t')[0])
     insplit = result.map(lambda x: (x.split('\t')[0],x.split('\t')[1])).flatMapValues(lambda x:x.split(';;;;')).map(lambda x: (x[0],x[1].split('::::')[0],x[1].split('::::')[1])).sortBy(lambda x: -int(x[2]))
-    return insplit.take(10)
+    return insplit
